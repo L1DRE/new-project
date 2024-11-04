@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ретро-консоль</title>
+    <title>Retro Console</title>
     <style>
         /* Основные стили страницы */
         body, html {
@@ -15,51 +15,16 @@
             background-color: black;
             font-family: monospace;
             overflow: hidden;
-            position: relative;
         }
 
-        /* Фон с анимацией геометрических фигур */
-        .background-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Стиль для фигур */
-        .shape {
-            position: absolute;
-            background-color: rgba(0, 255, 0, 0.15);
-            opacity: 0;
-            animation: fadeInOut 4s infinite ease-in-out;
-            mix-blend-mode: lighten;
-        }
-
-        /* Круги */
-        .circle {
-            border-radius: 50%;
-        }
-
-        /* Анимация появления и исчезновения */
-        @keyframes fadeInOut {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 0.4; }
-        }
-
-        /* Кнопка "Подключиться к консоли" */
+        /* Кнопка "Connect to Console" */
         .connect-button {
-            position: relative;
             background-color: #333;
             color: #00ff00;
             border: 2px solid #00ff00;
             padding: 15px 30px;
             font-size: 20px;
             cursor: pointer;
-            z-index: 2;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -81,32 +46,16 @@
             text-align: center;
             width: 300px;
             margin-top: 20px;
-            animation: fadeIn 1s forwards;
-            position: relative;
-            z-index: 2;
         }
     </style>
 </head>
 <body>
 
-    <!-- Фоновая область с геометрическими фигурами -->
-    <div class="background-shapes">
-        <!-- Добавим несколько кругов разных размеров и позиций -->
-        <div class="shape circle" style="width: 150px; height: 150px; top: 10%; left: 15%; animation-duration: 6s;"></div>
-        <div class="shape circle" style="width: 200px; height: 200px; top: 40%; left: 30%; animation-duration: 5.5s;"></div>
-        <div class="shape circle" style="width: 100px; height: 100px; top: 70%; left: 25%; animation-duration: 7s;"></div>
-        <div class="shape circle" style="width: 170px; height: 170px; top: 30%; left: 55%; animation-duration: 6.5s;"></div>
-        <div class="shape circle" style="width: 130px; height: 130px; top: 80%; left: 65%; animation-duration: 5s;"></div>
-        <div class="shape circle" style="width: 110px; height: 110px; top: 20%; left: 80%; animation-duration: 5.5s;"></div>
-        <div class="shape circle" style="width: 90px; height: 90px; top: 50%; left: 75%; animation-duration: 6s;"></div>
-        <div class="shape circle" style="width: 140px; height: 140px; top: 60%; left: 40%; animation-duration: 4.5s;"></div>
-    </div>
-
-    <!-- Кнопка "Подключиться к консоли" -->
-    <button class="connect-button" onclick="showPasswordInput()">Подключиться к консоли</button>
+    <!-- Кнопка "Connect to Console" -->
+    <button class="connect-button" onclick="showPasswordInput()">Connect to Console</button>
 
     <!-- Поле для ввода пароля -->
-    <input type="password" class="password-input" id="passwordInput" placeholder="Введите пароль" onkeydown="checkPassword(event)">
+    <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" onkeydown="checkPassword(event)">
 
     <script>
         // Функция для отображения поля ввода пароля
@@ -124,7 +73,7 @@
                 if (password === correctPassword) {
                     window.location.href = 'console.html'; // Переход на следующую страницу
                 } else {
-                    alert('Неверный пароль. Попробуйте снова.');
+                    alert('Incorrect password. Please try again.');
                     event.target.value = ''; // Очистка поля ввода
                 }
             }
