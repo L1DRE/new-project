@@ -65,12 +65,21 @@
             document.getElementById('passwordInput').focus(); // Фокус на поле ввода
         }
 
-        // Функция проверки пароля
-        function checkPassword(event) {
-            const correctPassword = '1234'; // Задайте ваш пароль здесь
+        // Функция для хеширования пароля с использованием SHA-256
+        async function hashPassword(password) {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(password);
+            const hash = await crypto.subtle.digest('SHA-256', data);
+            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Проверка пароля с использованием хеша
+        async function checkPassword(event) {
+            const correctHash = '03ac674216f3e15c761ee1a5e255f067953623c8b388b446a82dfb9e7e200bd0'; // SHA-256 хеш от "1234"
             if (event.key === 'Enter') {
                 const password = event.target.value;
-                if (password === correctPassword) {
+                const passwordHash = await hashPassword(password);
+                if (passwordHash === correctHash) {
                     window.location.href = 'console.html'; // Переход на следующую страницу
                 } else {
                     alert('Incorrect password. Please try again.');
