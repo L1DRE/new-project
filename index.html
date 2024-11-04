@@ -17,17 +17,21 @@
             overflow: hidden;
         }
 
-        /* Эффект плавного проявления */
-        .console {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Фоновая консоль */
+        .console-background {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             background-color: black;
             color: #00ff00;
-            opacity: 0; /* Начальное значение для эффекта проявления */
-            animation: fadeIn 3s forwards; /* Анимация проявления */
+            opacity: 0;
+            animation: fadeIn 3s forwards;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
         }
 
         /* Анимация появления консоли */
@@ -40,14 +44,16 @@
             }
         }
 
-        /* Центрирование кнопки */
+        /* Кнопка "Connect to CMD" поверх консоли */
         .connect-button {
+            position: relative;
             background-color: #333;
             color: #00ff00;
             border: 2px solid #00ff00;
             padding: 15px 30px;
             font-size: 20px;
             cursor: pointer;
+            z-index: 2; /* Поверх консоли */
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -67,6 +73,7 @@
             color: #00ff00;
             border: 2px solid #00ff00;
             box-shadow: 0 0 10px #00ff00;
+            z-index: 3;
         }
 
         .output {
@@ -114,30 +121,31 @@
 </head>
 <body>
 
-    <!-- Фон консоли -->
-    <div class="console" id="console">
-        <!-- Кнопка "Connect to CMD" по центру -->
-        <button class="connect-button" onclick="showCommandConsole()">Connect to CMD</button>
-    </div>
+    <!-- Фоновая консоль -->
+    <div class="console-background" id="consoleBackground">
+        <!-- Центральная консоль после нажатия кнопки -->
+        <div class="command-console" id="commandConsole">
+            <div class="output">
+                Microsoft Windows [Version 10.0.19041.867]<br>
+                (c) Корпорация Майкрософт, 2020. Все права защищены.
+            </div>
 
-    <!-- Область командной строки -->
-    <div class="command-console" id="commandConsole">
-        <div class="output">
-            Microsoft Windows [Version 10.0.19041.867]<br>
-            (c) Корпорация Майкрософт, 2020. Все права защищены.
-        </div>
-
-        <div class="command-line">
-            <span class="prompt">C:\Users\Username&gt;</span>
-            <input type="text" class="input" id="user-input" autofocus>
-            <div class="cursor"></div>
+            <div class="command-line">
+                <span class="prompt">C:\Users\Username&gt;</span>
+                <input type="text" class="input" id="user-input" autofocus>
+                <div class="cursor"></div>
+            </div>
         </div>
     </div>
+
+    <!-- Кнопка "Connect to CMD" поверх консоли -->
+    <button class="connect-button" onclick="showCommandConsole()">Connect to CMD</button>
 
     <script>
         // Функция для отображения командной строки
         function showCommandConsole() {
-            document.getElementById('console').style.display = 'none'; // Скрываем фон консоли и кнопку
+            document.getElementById('consoleBackground').style.display = 'none'; // Скрываем фоновую консоль
+            document.querySelector('.connect-button').style.display = 'none'; // Скрываем кнопку
             const commandConsole = document.getElementById('commandConsole');
             commandConsole.style.display = 'block'; // Показываем командную строку
             document.getElementById('user-input').focus(); // Фокус на поле ввода
@@ -150,7 +158,7 @@
         inputField.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') {
                 const userCommand = inputField.value;
-                outputDiv.innerHTML += `<br>C:\\Users\\Username&gt; ${userCommand}<br>Команда не распознана. Попробуйте еще раз.`;
+                outputDiv.innerHTML += `<br>C:\\Users\\User&gt; ${userCommand}<br>Команда не распознана. Попробуйте еще раз.`;
                 inputField.value = ''; // Очистка поля ввода
             }
         });
