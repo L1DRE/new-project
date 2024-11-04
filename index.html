@@ -33,9 +33,10 @@
         /* Стиль для фигур */
         .shape {
             position: absolute;
-            background-color: rgba(0, 255, 0, 0.2);
+            background-color: rgba(0, 255, 0, 0.15);
             opacity: 0;
-            animation: fadeInOut 3s infinite;
+            animation: fadeInOut 4s infinite ease-in-out;
+            mix-blend-mode: lighten;
         }
 
         /* Круги */
@@ -46,7 +47,7 @@
         /* Анимация появления и исчезновения */
         @keyframes fadeInOut {
             0%, 100% { opacity: 0; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.4; }
         }
 
         /* Кнопка "Подключиться к консоли" */
@@ -90,12 +91,15 @@
 
     <!-- Фоновая область с геометрическими фигурами -->
     <div class="background-shapes">
-        <!-- Добавим несколько фигур разных размеров и позиций -->
-        <div class="shape circle" style="width: 150px; height: 150px; top: 10%; left: 15%; animation-duration: 4s;"></div>
-        <div class="shape square" style="width: 100px; height: 100px; top: 40%; left: 70%; animation-duration: 5s;"></div>
-        <div class="shape circle" style="width: 80px; height: 80px; top: 60%; left: 25%; animation-duration: 6s;"></div>
-        <div class="shape square" style="width: 130px; height: 130px; top: 30%; left: 50%; animation-duration: 4.5s;"></div>
-        <div class="shape circle" style="width: 110px; height: 110px; top: 70%; left: 80%; animation-duration: 3.5s;"></div>
+        <!-- Добавим несколько кругов разных размеров и позиций -->
+        <div class="shape circle" style="width: 150px; height: 150px; top: 10%; left: 15%; animation-duration: 6s;"></div>
+        <div class="shape circle" style="width: 200px; height: 200px; top: 40%; left: 30%; animation-duration: 5.5s;"></div>
+        <div class="shape circle" style="width: 100px; height: 100px; top: 70%; left: 25%; animation-duration: 7s;"></div>
+        <div class="shape circle" style="width: 170px; height: 170px; top: 30%; left: 55%; animation-duration: 6.5s;"></div>
+        <div class="shape circle" style="width: 130px; height: 130px; top: 80%; left: 65%; animation-duration: 5s;"></div>
+        <div class="shape circle" style="width: 110px; height: 110px; top: 20%; left: 80%; animation-duration: 5.5s;"></div>
+        <div class="shape circle" style="width: 90px; height: 90px; top: 50%; left: 75%; animation-duration: 6s;"></div>
+        <div class="shape circle" style="width: 140px; height: 140px; top: 60%; left: 40%; animation-duration: 4.5s;"></div>
     </div>
 
     <!-- Кнопка "Подключиться к консоли" -->
