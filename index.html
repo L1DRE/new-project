@@ -33,7 +33,7 @@
         /* Задаем анимацию для полосок */
         .noise-line {
             position: absolute;
-            width: 100%;
+            width: 100vw; /* Растягиваем полосы на всю ширину экрана */
             height: 2px;
             background-color: rgba(0, 255, 0, 0.2);
             animation: flicker 0.1s infinite alternate;
@@ -45,7 +45,7 @@
             left: 0;
         }
         .noise-line:nth-child(even) {
-            left: 50%;
+            left: 0;
         }
         
         /* Анимация мерцания для эффекта помех */
@@ -98,14 +98,23 @@
     <div class="noise-background">
         <!-- Создаем несколько полосок с рандомным интервалом для эффекта помех -->
         <div class="noise-line" style="top: 5%;"></div>
+        <div class="noise-line" style="top: 10%;"></div>
         <div class="noise-line" style="top: 15%;"></div>
+        <div class="noise-line" style="top: 20%;"></div>
         <div class="noise-line" style="top: 25%;"></div>
+        <div class="noise-line" style="top: 30%;"></div>
         <div class="noise-line" style="top: 35%;"></div>
+        <div class="noise-line" style="top: 40%;"></div>
         <div class="noise-line" style="top: 45%;"></div>
+        <div class="noise-line" style="top: 50%;"></div>
         <div class="noise-line" style="top: 55%;"></div>
+        <div class="noise-line" style="top: 60%;"></div>
         <div class="noise-line" style="top: 65%;"></div>
+        <div class="noise-line" style="top: 70%;"></div>
         <div class="noise-line" style="top: 75%;"></div>
+        <div class="noise-line" style="top: 80%;"></div>
         <div class="noise-line" style="top: 85%;"></div>
+        <div class="noise-line" style="top: 90%;"></div>
         <div class="noise-line" style="top: 95%;"></div>
     </div>
 
