@@ -15,36 +15,47 @@
             background-color: black;
             font-family: monospace;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Фоновая консоль */
-        .console-background {
+        /* Фон с зелеными помехами */
+        .noise-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: black;
-            color: #00ff00;
+            background: black;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        /* Задаем анимацию для полосок */
+        .noise-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(0, 255, 0, 0.2);
+            animation: flicker 0.1s infinite alternate;
             opacity: 0;
-            animation: fadeIn 3s forwards;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
         }
 
-        /* Анимация появления консоли */
-        @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+        /* Рандомизация полосок по экрану */
+        .noise-line:nth-child(odd) {
+            left: 0;
+        }
+        .noise-line:nth-child(even) {
+            left: 50%;
+        }
+        
+        /* Анимация мерцания для эффекта помех */
+        @keyframes flicker {
+            0% { opacity: 0; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.4; }
         }
 
-        /* Кнопка "Подключиться к консоли" поверх консоли */
+        /* Кнопка "Подключиться к консоли" */
         .connect-button {
             position: relative;
             background-color: #333;
@@ -76,19 +87,33 @@
             width: 300px;
             margin-top: 20px;
             animation: fadeIn 1s forwards;
+            position: relative;
+            z-index: 2;
         }
     </style>
 </head>
 <body>
 
-    <!-- Фоновая консоль -->
-    <div class="console-background">
-        <!-- Кнопка "Подключиться к консоли" по центру -->
-        <button class="connect-button" onclick="showPasswordInput()">Подключиться к консоли</button>
-
-        <!-- Поле для ввода пароля -->
-        <input type="password" class="password-input" id="passwordInput" placeholder="Введите пароль" onkeydown="checkPassword(event)">
+    <!-- Фоновая область с зелеными полосками -->
+    <div class="noise-background">
+        <!-- Создаем несколько полосок с рандомным интервалом для эффекта помех -->
+        <div class="noise-line" style="top: 5%;"></div>
+        <div class="noise-line" style="top: 15%;"></div>
+        <div class="noise-line" style="top: 25%;"></div>
+        <div class="noise-line" style="top: 35%;"></div>
+        <div class="noise-line" style="top: 45%;"></div>
+        <div class="noise-line" style="top: 55%;"></div>
+        <div class="noise-line" style="top: 65%;"></div>
+        <div class="noise-line" style="top: 75%;"></div>
+        <div class="noise-line" style="top: 85%;"></div>
+        <div class="noise-line" style="top: 95%;"></div>
     </div>
+
+    <!-- Кнопка "Подключиться к консоли" -->
+    <button class="connect-button" onclick="showPasswordInput()">Подключиться к консоли</button>
+
+    <!-- Поле для ввода пароля -->
+    <input type="password" class="password-input" id="passwordInput" placeholder="Введите пароль" onkeydown="checkPassword(event)">
 
     <script>
         // Функция для отображения поля ввода пароля
