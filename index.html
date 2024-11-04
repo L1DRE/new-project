@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Консольный стиль сайта</title>
+    <title>Ретро-консоль</title>
     <style>
         /* Основные стили страницы */
         body, html {
@@ -44,7 +44,7 @@
             }
         }
 
-        /* Кнопка "Connect to CMD" поверх консоли */
+        /* Кнопка "Подключиться к консоли" поверх консоли */
         .connect-button {
             position: relative;
             background-color: #333;
@@ -53,7 +53,7 @@
             padding: 15px 30px;
             font-size: 20px;
             cursor: pointer;
-            z-index: 2; /* Поверх консоли */
+            z-index: 2;
             transition: background-color 0.3s, color 0.3s;
         }
 
@@ -63,105 +63,54 @@
             color: #333;
         }
 
-        /* Стили консоли после подключения */
-        .command-console {
+        /* Поле для ввода пароля */
+        .password-input {
             display: none;
-            width: 80%;
-            max-width: 600px;
-            padding: 20px;
             background-color: black;
             color: #00ff00;
             border: 2px solid #00ff00;
-            box-shadow: 0 0 10px #00ff00;
-            z-index: 3;
-        }
-
-        .output {
-            color: #00ff00;
-            margin: 0;
-            padding: 0;
-        }
-
-        .command-line {
-            display: flex;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        .prompt {
-            color: #00ff00;
-        }
-
-        .input {
+            padding: 10px;
+            font-size: 18px;
             outline: none;
-            background: transparent;
-            border: none;
-            color: #00ff00;
-            font-family: monospace;
-            caret-color: transparent;
-            flex-grow: 1;
-        }
-
-        /* Эффект для курсора */
-        .cursor {
-            display: inline-block;
-            background-color: #00ff00;
-            width: 8px;
-            height: 16px;
-            margin-left: 2px;
-            animation: blink 0.8s infinite;
-            vertical-align: text-bottom;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            50.1%, 100% { opacity: 0; }
+            text-align: center;
+            width: 300px;
+            margin-top: 20px;
+            animation: fadeIn 1s forwards;
         }
     </style>
 </head>
 <body>
 
     <!-- Фоновая консоль -->
-    <div class="console-background" id="consoleBackground">
-        <!-- Центральная консоль после нажатия кнопки -->
-        <div class="command-console" id="commandConsole">
-            <div class="output">
-                Microsoft Windows [Version 10.0.19041.867]<br>
-                (c) Корпорация Майкрософт, 2020. Все права защищены.
-            </div>
+    <div class="console-background">
+        <!-- Кнопка "Подключиться к консоли" по центру -->
+        <button class="connect-button" onclick="showPasswordInput()">Подключиться к консоли</button>
 
-            <div class="command-line">
-                <span class="prompt">C:\Users\Username&gt;</span>
-                <input type="text" class="input" id="user-input" autofocus>
-                <div class="cursor"></div>
-            </div>
-        </div>
+        <!-- Поле для ввода пароля -->
+        <input type="password" class="password-input" id="passwordInput" placeholder="Введите пароль" onkeydown="checkPassword(event)">
     </div>
 
-    <!-- Кнопка "Connect to CMD" поверх консоли -->
-    <button class="connect-button" onclick="showCommandConsole()">Connect to CMD</button>
-
     <script>
-        // Функция для отображения командной строки
-        function showCommandConsole() {
-            document.getElementById('consoleBackground').style.display = 'none'; // Скрываем фоновую консоль
+        // Функция для отображения поля ввода пароля
+        function showPasswordInput() {
             document.querySelector('.connect-button').style.display = 'none'; // Скрываем кнопку
-            const commandConsole = document.getElementById('commandConsole');
-            commandConsole.style.display = 'block'; // Показываем командную строку
-            document.getElementById('user-input').focus(); // Фокус на поле ввода
+            document.getElementById('passwordInput').style.display = 'block'; // Показываем поле для ввода пароля
+            document.getElementById('passwordInput').focus(); // Фокус на поле ввода
         }
 
-        // Обработчик для командного ввода
-        const inputField = document.getElementById('user-input');
-        const outputDiv = document.querySelector('.output');
-
-        inputField.addEventListener('keydown', (event) => {
+        // Функция проверки пароля
+        function checkPassword(event) {
+            const correctPassword = '1234'; // Задайте ваш пароль здесь
             if (event.key === 'Enter') {
-                const userCommand = inputField.value;
-                outputDiv.innerHTML += `<br>C:\\Users\\User&gt; ${userCommand}<br>Команда не распознана. Попробуйте еще раз.`;
-                inputField.value = ''; // Очистка поля ввода
+                const password = event.target.value;
+                if (password === correctPassword) {
+                    window.location.href = 'console.html'; // Переход на следующую страницу
+                } else {
+                    alert('Неверный пароль. Попробуйте снова.');
+                    event.target.value = ''; // Очистка поля ввода
+                }
             }
-        });
+        }
     </script>
 </body>
 </html>
