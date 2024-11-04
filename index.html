@@ -28,31 +28,23 @@
             background: black;
             overflow: hidden;
             z-index: 0;
+            pointer-events: none;
         }
 
-        /* Задаем анимацию для полосок */
+        /* Стиль для полосок помех */
         .noise-line {
             position: absolute;
-            width: 100vw; /* Растягиваем полосы на всю ширину экрана */
+            width: 100vw;
             height: 2px;
             background-color: rgba(0, 255, 0, 0.2);
-            animation: flicker 0.1s infinite alternate;
-            opacity: 0;
+            animation: noise 0.5s infinite;
         }
 
-        /* Рандомизация полосок по экрану */
-        .noise-line:nth-child(odd) {
-            left: 0;
-        }
-        .noise-line:nth-child(even) {
-            left: 0;
-        }
-        
-        /* Анимация мерцания для эффекта помех */
-        @keyframes flicker {
-            0% { opacity: 0; }
-            50% { opacity: 0.2; }
-            100% { opacity: 0.4; }
+        /* Анимация для случайного движения полосок */
+        @keyframes noise {
+            0% { opacity: 0; transform: translateX(0); }
+            50% { opacity: 0.3; transform: translateX(20px); }
+            100% { opacity: 0; transform: translateX(-20px); }
         }
 
         /* Кнопка "Подключиться к консоли" */
@@ -97,25 +89,15 @@
     <!-- Фоновая область с зелеными полосками -->
     <div class="noise-background">
         <!-- Создаем несколько полосок с рандомным интервалом для эффекта помех -->
-        <div class="noise-line" style="top: 5%;"></div>
         <div class="noise-line" style="top: 10%;"></div>
-        <div class="noise-line" style="top: 15%;"></div>
         <div class="noise-line" style="top: 20%;"></div>
-        <div class="noise-line" style="top: 25%;"></div>
         <div class="noise-line" style="top: 30%;"></div>
-        <div class="noise-line" style="top: 35%;"></div>
         <div class="noise-line" style="top: 40%;"></div>
-        <div class="noise-line" style="top: 45%;"></div>
         <div class="noise-line" style="top: 50%;"></div>
-        <div class="noise-line" style="top: 55%;"></div>
         <div class="noise-line" style="top: 60%;"></div>
-        <div class="noise-line" style="top: 65%;"></div>
         <div class="noise-line" style="top: 70%;"></div>
-        <div class="noise-line" style="top: 75%;"></div>
         <div class="noise-line" style="top: 80%;"></div>
-        <div class="noise-line" style="top: 85%;"></div>
         <div class="noise-line" style="top: 90%;"></div>
-        <div class="noise-line" style="top: 95%;"></div>
     </div>
 
     <!-- Кнопка "Подключиться к консоли" -->
