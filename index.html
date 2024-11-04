@@ -6,17 +6,38 @@
     <title>Консольный стиль сайта</title>
     <style>
         /* Основные стили страницы */
-        body {
-            background-color: black;
-            color: #00ff00;
-            font-family: monospace;
-            font-size: 16px;
+        body, html {
+            height: 100%;
             margin: 0;
-            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 100vh;
+            background-color: black;
+            font-family: monospace;
+            overflow: hidden;
+        }
+
+        /* Эффект плавного проявления */
+        .console {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            color: #00ff00;
+            opacity: 0; /* Начальное значение для эффекта проявления */
+            animation: fadeIn 3s forwards; /* Анимация проявления */
+        }
+
+        /* Анимация появления консоли */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         /* Центрирование кнопки */
@@ -24,10 +45,10 @@
             background-color: #333;
             color: #00ff00;
             border: 2px solid #00ff00;
-            padding: 10px 20px;
-            font-size: 18px;
+            padding: 15px 30px;
+            font-size: 20px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Эффект при наведении на кнопку */
@@ -36,9 +57,9 @@
             color: #333;
         }
 
-        /* Стили консоли */
-        .console {
-            display: none; /* Скрыта до нажатия на кнопку */
+        /* Стили консоли после подключения */
+        .command-console {
+            display: none;
             width: 80%;
             max-width: 600px;
             padding: 20px;
@@ -70,7 +91,7 @@
             border: none;
             color: #00ff00;
             font-family: monospace;
-            caret-color: transparent; /* Скрывает стандартный курсор */
+            caret-color: transparent;
             flex-grow: 1;
         }
 
@@ -93,11 +114,14 @@
 </head>
 <body>
 
-    <!-- Кнопка для входа в "консоль" -->
-    <button class="connect-button" onclick="showConsole()">Connect to CMD</button>
-
-    <!-- Область "консоли" -->
+    <!-- Фон консоли -->
     <div class="console" id="console">
+        <!-- Кнопка "Connect to CMD" по центру -->
+        <button class="connect-button" onclick="showCommandConsole()">Connect to CMD</button>
+    </div>
+
+    <!-- Область командной строки -->
+    <div class="command-console" id="commandConsole">
         <div class="output">
             Microsoft Windows [Version 10.0.19041.867]<br>
             (c) Корпорация Майкрософт, 2020. Все права защищены.
@@ -111,11 +135,11 @@
     </div>
 
     <script>
-        // Функция для отображения консоли
-        function showConsole() {
-            document.querySelector('.connect-button').style.display = 'none'; // Скрываем кнопку
-            const consoleDiv = document.getElementById('console');
-            consoleDiv.style.display = 'block'; // Показываем консоль
+        // Функция для отображения командной строки
+        function showCommandConsole() {
+            document.getElementById('console').style.display = 'none'; // Скрываем фон консоли и кнопку
+            const commandConsole = document.getElementById('commandConsole');
+            commandConsole.style.display = 'block'; // Показываем командную строку
             document.getElementById('user-input').focus(); // Фокус на поле ввода
         }
 
