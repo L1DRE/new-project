@@ -48,11 +48,9 @@
 <body>
 
     <button class="connect-button" onclick="showPasswordInput()">Connect to Console</button>
-
     <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" onkeydown="checkPassword(event)">
 
     <script>
-        
         const encryptedPassword = '71aa78c7a882cf276ae1a9c93c9006cd';
 
         function showPasswordInput() {
@@ -70,6 +68,9 @@
                 const password = event.target.value;
                 const hashedInput = md5(password);
 
+                console.log('Введённый пароль (хеш):', hashedInput); 
+                console.log('Ожидаемый хеш:', encryptedPassword); 
+
                 if (hashedInput === encryptedPassword) {
                     window.location.href = 'console.html';
                 } else {
@@ -79,7 +80,7 @@
             }
         }
     </script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </body>
 </html>
