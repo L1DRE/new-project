@@ -9,11 +9,33 @@
             height: 100vh;
             margin: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background-color: black;
             font-family: monospace;
+            color: #00ff00;
             overflow: hidden;
+        }
+
+        .typing-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 2px solid #00ff00;
+            width: 0;
+            animation: typing 3s steps(20, end), blink-caret 0.7s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #00ff00; }
         }
 
         .connect-button {
@@ -47,9 +69,13 @@
 </head>
 <body>
 
+    <div class="typing-text" id="typingText">Welcome to my site!</div>
+
     <button class="connect-button" onclick="showPasswordInput()">Connect to Console</button>
+
     <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" onkeydown="checkPassword(event)">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script>
         const encryptedPassword = '6ac04a667b6784d13775a6ac9e5fb150';
 
@@ -81,6 +107,5 @@
         }
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </body>
 </html>
