@@ -58,21 +58,28 @@
     <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" onkeydown="checkPassword(event)">
 
     <script>
-        // Заданный пароль
-        const correctPassword = '1234'; // Установите нужный пароль
+        // Зашифрованная строка пароля (результат хеширования)
+        const encryptedPassword = 'e99a18c428cb38d5f260853678922e03'; // md5 для "123456" (например)
 
         // Функция для отображения поля ввода пароля
         function showPasswordInput() {
-            document.querySelector('.connect-button').style.display = 'none'; // Скрываем кнопку
-            document.getElementById('passwordInput').style.display = 'block'; // Показываем поле для ввода пароля
-            document.getElementById('passwordInput').focus(); // Фокус на поле ввода
+            document.querySelector('.connect-button').style.display = 'none';
+            document.getElementById('passwordInput').style.display = 'block';
+            document.getElementById('passwordInput').focus();
+        }
+
+        // Простая функция MD5 для хеширования (используем библиотеку)
+        function md5(string) {
+            return CryptoJS.MD5(string).toString();
         }
 
         // Проверка пароля
         function checkPassword(event) {
             if (event.key === 'Enter') {
                 const password = event.target.value;
-                if (password === correctPassword) {
+                const hashedInput = md5(password);
+
+                if (hashedInput === encryptedPassword) {
                     window.location.href = 'console.html'; // Переход на следующую страницу
                 } else {
                     alert('Incorrect password. Please try again.');
@@ -81,5 +88,8 @@
             }
         }
     </script>
+
+    <!-- Подключение библиотеки для MD5 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </body>
 </html>
