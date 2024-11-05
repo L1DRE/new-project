@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retro Console</title>
     <style>
-        /* Основные стили страницы */
         body, html {
             height: 100vh;
             margin: 0;
@@ -17,7 +16,6 @@
             overflow: hidden;
         }
 
-        /* Кнопка "Connect to Console" */
         .connect-button {
             background-color: #333;
             color: #00ff00;
@@ -28,13 +26,11 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Эффект при наведении на кнопку */
         .connect-button:hover {
             background-color: #00ff00;
             color: #333;
         }
 
-        /* Поле для ввода пароля */
         .password-input {
             display: none;
             background-color: black;
@@ -51,45 +47,38 @@
 </head>
 <body>
 
-    <!-- Кнопка "Connect to Console" -->
     <button class="connect-button" onclick="showPasswordInput()">Connect to Console</button>
 
-    <!-- Поле для ввода пароля -->
     <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" onkeydown="checkPassword(event)">
 
     <script>
-        // Зашифрованная строка пароля (MD5-хеш для "123456")
-        const encryptedPassword = 'e10adc3949ba59abbe56e057f20f883e';
+        const encryptedPassword = '9a1bcf2ff3d1280849c7d82d0edca706';
 
-        // Функция для отображения поля ввода пароля
         function showPasswordInput() {
             document.querySelector('.connect-button').style.display = 'none';
             document.getElementById('passwordInput').style.display = 'block';
             document.getElementById('passwordInput').focus();
         }
 
-        // Простая функция MD5 для хеширования (используем библиотеку)
         function md5(string) {
             return CryptoJS.MD5(string).toString();
         }
 
-        // Проверка пароля
         function checkPassword(event) {
             if (event.key === 'Enter') {
                 const password = event.target.value;
                 const hashedInput = md5(password);
 
                 if (hashedInput === encryptedPassword) {
-                    window.location.href = 'console.html'; // Переход на следующую страницу
+                    window.location.href = 'console.html';
                 } else {
                     alert('Incorrect password. Please try again.');
-                    event.target.value = ''; // Очистка поля ввода
+                    event.target.value = '';
                 }
             }
         }
     </script>
 
-    <!-- Подключение библиотеки для MD5 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
 </body>
 </html>
