@@ -70,14 +70,25 @@
 <body>
 
     <div class="typing-text" id="typingText">Welcome to my site!</div>
-
     <button class="connect-button" onclick="showPasswordInput()">Connect to Console</button>
-
     <input type="password" class="password-input" id="passwordInput" placeholder="Enter password" onkeydown="checkPassword(event)">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
     <script>
         const encryptedPassword = '6ac04a667b6784d13775a6ac9e5fb150';
+        let textIndex = 0;
+        const texts = ["Welcome to my site!", "Добро пожаловать на мой сайт!"];
+        const typingTextElement = document.getElementById("typingText");
+
+        function cycleText() {
+            typingTextElement.style.animation = "none";
+            typingTextElement.offsetHeight;
+            typingTextElement.textContent = texts[textIndex];
+            typingTextElement.style.animation = "typing 3s steps(20, end), blink-caret 0.7s step-end infinite";
+            textIndex = (textIndex + 1) % texts.length;
+        }
+
+        setInterval(cycleText, 13000);
 
         function showPasswordInput() {
             document.querySelector('.connect-button').style.display = 'none';
