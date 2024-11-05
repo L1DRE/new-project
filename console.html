@@ -1,40 +1,65 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Консоль</title>
+    <title>Console Layout</title>
     <style>
-        /* Основные стили страницы */
         body, html {
-            height: 100%;
+            height: 100vh;
             margin: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             background-color: black;
-            color: #00ff00;
             font-family: monospace;
+            color: #00ff00;
             overflow: hidden;
         }
 
-        /* Область для консоли */
-        .console {
+        /* Контейнер для сетки */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 10px;
             width: 80%;
-            max-width: 800px;
-            background-color: black;
-            color: #00ff00;
-            padding: 20px;
+            height: 80%;
+            max-width: 600px;
+            max-height: 600px;
+        }
+
+        /* Стиль для каждой ячейки */
+        .grid-item {
             border: 2px solid #00ff00;
-            box-shadow: 0 0 10px #00ff00;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #111;
+            color: #00ff00;
+            transition: background-color 0.3s;
+        }
+
+        .grid-item:hover {
+            background-color: #333;
         }
     </style>
 </head>
 <body>
-    <div class="console">
-        <p>Добро пожаловать в консоль!</p>
-        <p>Здесь вы можете настроить содержимое по своему желанию.</p>
-        <!-- Добавьте дополнительный контент сюда -->
+
+    <div class="grid-container">
+        <div class="grid-item">Секция 1</div>
+        <div class="grid-item">Секция 2</div>
+        <div class="grid-item">Секция 3</div>
+        <div class="grid-item">Секция 4</div>
+        <div class="grid-item">Секция 5</div>
+        <div class="grid-item">Секция 6</div>
+        <div class="grid-item">Секция 7</div>
+        <div class="grid-item">Секция 8</div>
+        <div class="grid-item">Секция 9</div>
     </div>
+
 </body>
 </html>
