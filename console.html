@@ -22,17 +22,13 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
-            gap: 10px;
-            width: 80%;
-            height: 80%;
-            max-width: 600px;
-            max-height: 600px;
+            width: 100vw;
+            height: 100vh;
         }
 
         /* Стиль для каждой ячейки */
         .grid-item {
             border: 2px solid #00ff00;
-            padding: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -40,6 +36,7 @@
             background-color: #111;
             color: #00ff00;
             transition: background-color 0.3s;
+            font-size: 1.5vw;
         }
 
         .grid-item:hover {
