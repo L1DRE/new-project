@@ -67,10 +67,20 @@
 
         // Функция для хеширования пароля с использованием SHA-256
         async function hashPassword(password) {
-            const encoder = new TextEncoder();
-            const data = encoder.encode(password);
-            const hash = await crypto.subtle.digest('SHA-256', data);
-            return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+            if (!window.crypto || !crypto.subtle) {
+                console.error("Crypto API не поддерживается в этом браузере.");
+                alert("Your browser does not support the required security features.");
+                return null;
+            }
+            try {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(password);
+                const hash = await crypto.subtle.digest('SHA-256', data);
+                return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+            } catch (error) {
+                console.error("Ошибка при хешировании пароля:", error);
+                return null;
+            }
         }
 
         // Проверка пароля с использованием хеша
@@ -79,6 +89,10 @@
             if (event.key === 'Enter') {
                 const password = event.target.value;
                 const passwordHash = await hashPassword(password);
+                if (passwordHash === null) {
+                    alert("Error hashing password.");
+                    return;
+                }
                 if (passwordHash === correctHash) {
                     window.location.href = 'console.html'; // Переход на следующую страницу
                 } else {
